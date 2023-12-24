@@ -17,8 +17,8 @@ def login_view(request):
 
         if form.is_valid():
             # Obtener el nombre de usuario y la contraseña del login
-            username = request.GET['username']
-            password = request.GET['password']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
 
             # Utilizando sentencia RAW SQL para obtener el usuario por nombre
             with connection.cursor() as cursor:

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Login</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -59,15 +59,15 @@
 </head>
 <body>
     <div class="login-container">
-        <h2>Registro</h2>
-        <form method="get" action="/registerapp/register">
-            <label for="username">Nombre:</label>
+        <h2>Borrado</h2>
+        <form method="get" action="/deleteapp/delete">
+            <label for="username">Usuario:</label>
             <input type="text" name="username" required>
             <br>
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" required>
-            <br>
-            <button type="submit">Registrarse</button>
+{#            <label for="password">Contraseña:</label>#}
+{#            <input type="password" name="password" required>#}
+{#            <br>#}
+            <button type="submit">Borrar usuario</button>
         </form>
     </div>
 </body>
