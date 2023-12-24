@@ -8,7 +8,7 @@ def index_view(request):
 
 
 def register_view(request):
-    from usersRegister.models import Usuario
+    from registerApp.models import Usuario
 
     if request.GET:
         username = request.GET['username']

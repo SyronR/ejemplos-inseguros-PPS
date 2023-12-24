@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import usersRegister
+import loginApp
+import registerApp
+from generalsite.views import index_view
 
 urlpatterns = [
+    path('', index_view),
     path('admin/', admin.site.urls),
-    path('registerapp/', include(usersRegister.urls))
+    path('registerapp/', include(registerApp.urls)),
+    path('loginapp/', include(loginApp.urls))
 ]
