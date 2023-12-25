@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-t52sin1ksk6f$*0p95l%_%yd_5r@am667afx9fzkzm!^bf^5%%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -37,11 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
     'generalsite',
     'registerApp',
     'loginApp',
     'deleteApp'
 ]
+
+CSRF_COOKIE_SECURE = True
+SSL_CERTIFICATE = './certificate.crt'
+SSL_KEY = './private_key.key'
+SECURE_SSL_REDIRECT = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

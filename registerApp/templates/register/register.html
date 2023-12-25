@@ -60,7 +60,10 @@
 <body>
     <div class="login-container">
         <h2>Registro</h2>
-        <form method="get" action="/registerapp/register">
+{#        <form method="get" action="/registerapp/register">#}
+        <form method="post" action="/registerapp/register/">
+            {% csrf_token %}
+
             <label for="username">Nombre:</label>
             <input type="text" name="username" required>
             <br>

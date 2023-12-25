@@ -1,4 +1,6 @@
+from django.contrib.auth.hashers import make_password
 from django.db import connection
+from django.middleware import csrf
 from django.shortcuts import render
 
 # Aqui se definen los metodos que renderizaran los templates que contienen los HTMLs
@@ -11,12 +13,17 @@ def index_view(request):
 def register_view(request):
     from registerApp.models import Usuario, RegisterForm
 
-    if request.GET:
-        form = RegisterForm(request.GET)
+    # if request.GET:
+    if request.method == 'POST':
+        # form = RegisterForm(request.GET)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+
+            # Cifrar la contraseña del usuario
+            hashed_passwd = make_password(password)
 
             # Utilizando sentencia RAW SQL para obtener el usuario por nombre
             with connection.cursor() as cursor:
@@ -29,9 +36,10 @@ def register_view(request):
                 # Crear un objeto usuario donde se guardan los valores internamente
                 user = Usuario()
                 user.username = username
-                user.password = password
+                # user.password = password
+                user.password = hashed_passwd
                 user.save()
 
                 return render(request, 'register/success.html')
     else:
-        return render(request, 'register/register.html')
+        return render(request, 'register/register.html', {'csrf_token': csrf.get_token(request)})
