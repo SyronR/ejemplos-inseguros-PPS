@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 CSRF_COOKIE_SECURE = True
 SSL_CERTIFICATE = './certificate.crt'
-SSL_KEY = './private_key.key'
+SSL_KEY = './local.key'
 SECURE_SSL_REDIRECT = True
 
 MIDDLEWARE = [

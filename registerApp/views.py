@@ -13,14 +13,13 @@ def index_view(request):
 def register_view(request):
     from registerApp.models import Usuario, RegisterForm
 
-    # if request.GET:
     if request.method == 'POST':
-        # form = RegisterForm(request.GET)
         form = RegisterForm(request.POST)
 
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            admin = request.POST.get('admin', "off")
 
             # Cifrar la contraseña del usuario
             hashed_passwd = make_password(password)
@@ -36,8 +35,11 @@ def register_view(request):
                 # Crear un objeto usuario donde se guardan los valores internamente
                 user = Usuario()
                 user.username = username
-                # user.password = password
                 user.password = hashed_passwd
+                if admin == "on":
+                    user.admin = True
+                else:
+                    user.admin = False
                 user.save()
 
                 return render(request, 'register/success.html')

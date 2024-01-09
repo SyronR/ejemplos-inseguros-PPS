@@ -60,7 +60,9 @@
 <body>
     <div class="login-container">
         <h2>Borrado</h2>
-        <form method="get" action="/deleteapp/delete">
+        <form method="post" action="/deleteapp/delete/">
+            {% csrf_token %}
+
             <label for="username">Usuario:</label>
             <input type="text" name="username" required>
             <br>

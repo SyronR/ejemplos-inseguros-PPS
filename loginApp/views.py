@@ -26,10 +26,12 @@ def login_view(request):
                 cursor.execute("SELECT * FROM registerApp_usuario WHERE username = %s;", [username])
                 user_row = cursor.fetchone()
 
+            print(user_row)
+
             # Si el usuario existe...
             if user_row:
                 # Verifica la contraseña cifrada
-                if user_row and check_password(password, user_row[0]):
+                if user_row and check_password(password, user_row[1]):
                     # Almacena el ID del usuario en la sesión
                     request.session['user_id'] = user_row[0]
 
