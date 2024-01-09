@@ -60,7 +60,9 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form method="get" action="/loginapp/login">
+        <form method="post" action="/loginapp/login/">
+            {% csrf_token %}
+
             <label for="username">Usuario:</label>
             <input type="text" name="username" required>
             <br>

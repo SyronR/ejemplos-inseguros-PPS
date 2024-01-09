@@ -25,9 +25,9 @@ def register_view(request):
             # Cifrar la contraseña del usuario
             hashed_passwd = make_password(password)
 
-            # Utilizando sentencia RAW SQL para obtener el usuario por nombre
+            # Utilizando sentencia SQL Segura para obtener el usuario por nombre
             with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM registerApp_usuario WHERE username = %s", [username])
+                cursor.execute("SELECT * FROM registerApp_usuario WHERE username = %s;", [username])
                 user_exits = cursor.fetchone()
 
             if user_exits:
